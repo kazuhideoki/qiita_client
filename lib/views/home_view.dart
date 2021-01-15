@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/all.dart';
-import 'package:qiita_client/main.dart';
 import 'package:qiita_client/views/tab/search_page.dart';
 import 'package:qiita_client/views/tab/stock_page.dart';
 import 'package:qiita_client/views/tab/trend_page.dart';
