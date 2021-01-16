@@ -16,7 +16,6 @@ class RepositoriesApi {
       options: Options(
         headers: {
           "Authorization": 'Bearer ${DotEnv().env['QIITA_TOKEN']}',
-          "Content-Type": "application/json"
         },
       ),
     )
