@@ -1,13 +1,14 @@
-
-
 class Repository {
-  final int id;
-  final String name;
+  final String id;
+  final String title;
+  final String rendered_body;
+  final String body;
 
-  Repository(this.name, this.id);
+  Repository(this.title, this.id, this.body, this.rendered_body);
 
   Repository.fromJson(Map<String, dynamic> json)
       : id = json["id"],
-        name = json["name"];
-
+        title = json["title"],
+        rendered_body = json["rendered_body"],
+        body = json["body"];
 }

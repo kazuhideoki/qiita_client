@@ -1,24 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:qiita_client/common/const.dart';
 import 'package:qiita_client/models/repository.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+const d = 'https://qiita.com/api/v2/items?page=1&per_page=5';
 
 class RepositoriesApi {
-
-  // ignore: missing_return
-  Future<List<Repository>> getApi(name) async {
+  Future<List<Repository>> getApi() async {
 
     final dio = new Dio();
-    final url = Const.API_BASE + "/users/" + name + "/repos";
+    final url = Const.API_BASE + "/items" + "?page=1&per_page=5";
     var data = await dio
-        .get(url,
+        .get(
+      url,
       options: Options(
         headers: {
+          "Authorization": 'Bearer ${DotEnv().env['QIITA_TOKEN']}',
+          "Content-Type": "application/json"
         },
       ),
-    ).then((response) {
-
+    )
+        .then((response) {
       List<Repository> list = [];
-      for(var date in response.data) {
+      for (var date in response.data) {
         list.add(new Repository.fromJson(date));
       }
       return list;

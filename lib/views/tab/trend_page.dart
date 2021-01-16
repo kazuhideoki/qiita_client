@@ -7,7 +7,7 @@ class TrendPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = RepositoriesApi().getApi('kazuhideoki');
+    final data = RepositoriesApi().getApi();
     return FutureBuilder(
       future: data,
       initialData: null,
@@ -16,7 +16,7 @@ class TrendPage extends StatelessWidget {
         final repos = snapshot.data;
         if (snapshot.hasData) {
           return ListView(
-            children: repos.map((value) => Text(value.name)).toList()
+            children: repos.map((value) => Text(value.title)).toList()
           );
         } else {
           return Text('no data');

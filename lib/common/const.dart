@@ -1,3 +1,3 @@
 class Const {
-  static const String API_BASE="https://api.github.com";
+  static const String API_BASE="https://qiita.com/api/v2";
 }
