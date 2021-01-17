@@ -6,10 +6,13 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 const d = 'https://qiita.com/api/v2/items?page=1&per_page=5';
 
 class QiitaApi {
-  Future<List<Article>> getArticles() async {
+  Future<List<Article>> getArticles({int page = 1, int perPage = 5, String query }) async {
+    return _apiItem('/items/?page=$page&per_page=$perPage&query=$query');
+  }
 
+  Future<List<Article>> _apiItem(href) async {
     final dio = new Dio();
-    final url = Const.API_BASE + "/items" + "?page=1&per_page=5";
+    final url = Const.API_BASE + href;
     var data = await dio
         .get(
       url,

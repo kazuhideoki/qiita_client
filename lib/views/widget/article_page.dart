@@ -1,5 +1,5 @@
 import 'package:qiita_client/models/article.dart';
-import '../utils/importer.dart';
+import '../../utils/importer.dart';
 
 
 class ArticlePage extends StatelessWidget {
@@ -24,9 +24,7 @@ class ArticlePage extends StatelessWidget {
           body: ColoredBox(
             color: Colors.white,
             child: SingleChildScrollView(
-              // child: Html(data: renderedBody),
-
-              child: HtmlWidget(data.rendered_body),
+              child: HtmlWidget(data.renderedBody),
             ),
           ),
         ));

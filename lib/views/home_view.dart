@@ -13,12 +13,13 @@ class HomeView extends HookWidget {
     };
 
     return Scaffold(
-      body: IndexedStack(
+      body: SafeArea(child: IndexedStack(
         index: currentIndex.value,
         children: [
           for (final tabItem in TabNavigationItem.items) tabItem.page,
         ],
-      ),
+      ),),
+      
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex.value,
         onTap: (int index) => switchTab(index),
