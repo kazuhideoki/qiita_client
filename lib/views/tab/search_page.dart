@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qiita_client/apis/qiita-api.dart';
-import 'package:qiita_client/models/article.dart';
 import 'package:qiita_client/utils/importer.dart';
 import 'package:qiita_client/views/widget/article_list.dart';
 
@@ -9,7 +8,6 @@ class SearchPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final text = useState('');
     final data = useState();
     return Column(
       children: [
