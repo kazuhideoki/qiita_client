@@ -16,13 +16,11 @@ class QiitaApi {
 
   Future<List<Article>> getStockArticles(
       {int page = 1, int perPage = 20, String query}) async {
-    print('getStockArticleだ');
     return _apiItem(
         '/users/${DotEnv().env['QIITA_USER']}/stocks/?page=$page&per_page=$perPage&query=$query');
   }
 
   Future<List<Article>> _apiItem(href) async {
-    print('_apiItemだ');
     final url = Const.API_BASE + href;
     var data = await dio
         .get(

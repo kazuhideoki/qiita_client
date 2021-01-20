@@ -9,7 +9,7 @@ class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final textQuery = useState();
-    final articles = useProvider(articleProvider(textQuery?.value));
+    final articles = useProvider(articleProvider(textQuery.value));
 
     return Column(
       children: [
@@ -21,6 +21,7 @@ class HomePage extends HookWidget {
         Expanded(child: ArticleList(
           data: articles,
           stocked: false,
+          isLgtmOrder: true,
         ))
         
       ],
