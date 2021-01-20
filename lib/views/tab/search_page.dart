@@ -8,6 +8,7 @@ class SearchPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     final data = useState();
     return Column(
       children: [
@@ -16,7 +17,9 @@ class SearchPage extends HookWidget {
             data.value = QiitaApi().getArticles(query: query, perPage: 20);
           },
         ),
-        Expanded(child: ArticleList(data: data.value))
+        // Expanded(child: 
+        ArticleList(data: data.value, stocked: false,)
+        // )
         
       ],
     );

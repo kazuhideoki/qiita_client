@@ -9,19 +9,20 @@ class QiitaApi {
   final dio = new Dio();
 
   Future<List<Article>> getArticles(
-      {int page = 1, int perPage = 5, String query}) async {
+      {int page = 1, int perPage = 20, String query}) async {
     print('getArticleだ query: $query');
     return _apiItem('/items/?page=$page&per_page=$perPage&query=$query');
   }
 
   Future<List<Article>> getStockArticles(
-      {int page = 1, int perPage = 5, String query}) async {
+      {int page = 1, int perPage = 20, String query}) async {
     print('getStockArticleだ');
     return _apiItem(
         '/users/${DotEnv().env['QIITA_USER']}/stocks/?page=$page&per_page=$perPage&query=$query');
   }
 
   Future<List<Article>> _apiItem(href) async {
+    print('_apiItemだ');
     final url = Const.API_BASE + href;
     var data = await dio
         .get(
@@ -45,11 +46,12 @@ class QiitaApi {
     return data;
   }
 
-  Future<void> stockArticle(String itemId) async {
+  // 個々はメモです
+  Future<Response> stockArticle(String itemId) async {
     print('stockArticleだ');
     final url = Const.API_BASE + '/items/$itemId/stock';
     try {
-      await dio.put(
+      return await dio.put(
         url,
         options: Options(
           headers: {
@@ -63,11 +65,12 @@ class QiitaApi {
     }
   }
 
-  Future<void> removeStockArticle(String itemId) async {
+  Future<Response> removeStockArticle(String itemId) async {
     print('removeStockArticleだ');
     final url = Const.API_BASE + '/items/$itemId/stock';
+    print(url);
     try {
-      await dio.delete(
+      return await dio.delete(
         url,
         options: Options(
           headers: {
