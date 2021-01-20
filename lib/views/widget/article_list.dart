@@ -13,43 +13,11 @@ class ArticleList extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    // if (data == null)
-    //   return Center(
-    //     child: Text('記事リスト'),
-    //   );
-    // return ArticleListView(
-    //         data: data,
-    //         stocked: stocked,
-    //       );
-
     return data?.when(
-    loading: () => const CircularProgressIndicator(),
-    error: (error, stack) => const Text('Oops'),
-    data: (articles) => ArticleListView(stocked: stocked, data: articles),
-  );
-
-
-    // return FutureBuilder(
-    //   future: data,
-    //   initialData: null,
-    //   builder: (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
-    //     final repos = snapshot.data;
-    //     if (snapshot.hasData) {
-    //       return ArticleListView(
-    //         data: repos,
-    //         stocked: stocked,
-    //       );
-    //     } else if (snapshot.hasError) {
-    //       return Center(
-    //         child: Text('Error Occared!'),
-    //       );
-    //     } else {
-    //       return Center(
-    //         child: CircularProgressIndicator(),
-    //       );
-    //     }
-    //   },
-    // );
+      loading: () => const Center(child: CircularProgressIndicator(),) ,
+      error: (error, stack) => const Text('Oops'),
+      data: (articles) => ArticleListView(stocked: stocked, data: articles),
+    );
   }
 }
 
@@ -64,7 +32,8 @@ class ArticleListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
         shrinkWrap: true,
-        children: data?.map((value) => Card(
+        children: data
+            ?.map((value) => Card(
                 child: FlatButton(
                     child: Text(value.title),
                     onPressed: () => Navigator.push(
@@ -73,6 +42,7 @@ class ArticleListView extends StatelessWidget {
                             builder: (context) => ArticlePage(
                                   data: value,
                                   stocked: stocked,
-                                ))))))?.toList());
+                                ))))))
+            ?.toList());
   }
 }

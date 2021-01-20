@@ -11,7 +11,6 @@ class StockPage extends HookWidget {
   Widget build(BuildContext context) {
     final stockArticles = useProvider(stockArticleProvider);
 
-    print('StockPageの〜RstockArticlesは $stockArticles');
     return ArticleList(
       data: stockArticles,
       stocked: true,
