@@ -6,24 +6,33 @@ import 'package:qiita_client/views/tab/stock_page.dart';
 class HomeView extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    var currentIndex = useState(0);
+    final currentIndex = useState(0);
     final switchTab = (int index) {
       currentIndex.value = index;
     };
+    final focusNode = useState(FocusNode());
 
     return Scaffold(
-      body: SafeArea(child: IndexedStack(
-        index: currentIndex.value,
-        children: [
-          for (final tabItem in TabNavigationItem.items) tabItem.page,
-        ],
-      ),),
-      
+      body: SafeArea(
+        child: IndexedStack(
+          index: currentIndex.value,
+          children: [
+            for (final tabItem
+                in TabNavigationItem.items(focusNode: focusNode.value))
+              tabItem.page,
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex.value,
-        onTap: (int index) => switchTab(index),
+        onTap: (int index) {
+          switchTab(index);
+          if (index == 0) {
+            focusNode.value.requestFocus();
+          }
+        },
         items: [
-          for (final tabItem in TabNavigationItem.items)
+          for (final tabItem in TabNavigationItem.items())
             BottomNavigationBarItem(
               icon: tabItem.icon,
               label: tabItem.title,
@@ -45,9 +54,9 @@ class TabNavigationItem {
     @required this.icon,
   });
 
-  static List<TabNavigationItem> get items => [
+  static List<TabNavigationItem> items({FocusNode focusNode}) => [
         TabNavigationItem(
-          page: HomePage(),
+          page: HomePage(focusNode: focusNode),
           icon: Icon(Icons.search),
           title: "Search",
         ),

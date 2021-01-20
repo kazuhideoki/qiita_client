@@ -11,21 +11,12 @@ class ArticlePage extends HookWidget {
   });
 
   final Article data;
-  bool stocked;
+  final bool stocked;
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final state = useProvider(stockArticleProvider);
-    return
-        //  MaterialApp(
-        //     title: 'Qiita App',
-        //     theme: ThemeData(
-        //       primarySwatch: Colors.orange,
-        //       visualDensity: VisualDensity.adaptivePlatformDensity,
-        //     ),
-        //     home:
-        Scaffold(
+    return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(data.title),
@@ -87,34 +78,3 @@ final snackBar = (String message) => SnackBar(
         },
       ),
     );
-
-// Find the Scaffold in the widget tree and use
-// it to show a SnackBar.
-
-void stockedDialog(context) {
-  showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('AlertDialog Title'),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Text('This is a demo alert dialog.'),
-              Text('Would you like to approve of this message?'),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: Text('Approve'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}

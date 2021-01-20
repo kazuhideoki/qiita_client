@@ -4,7 +4,9 @@ import 'package:qiita_client/utils/importer.dart';
 import 'package:qiita_client/views/widget/article_list.dart';
 
 class HomePage extends HookWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key key, @required this.focusNode}) : super(key: key);
+
+  final FocusNode focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +16,17 @@ class HomePage extends HookWidget {
     return Column(
       children: [
         TextField(
+          focusNode: focusNode,
           onSubmitted: (String value) {
             textQuery.value = value;
           },
         ),
-        Expanded(child: ArticleList(
+        Expanded(
+            child: ArticleList(
           data: articles,
           stocked: false,
           isLgtmOrder: true,
         ))
-        
       ],
     );
   }

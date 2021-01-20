@@ -25,6 +25,7 @@ class ArticleList extends HookWidget {
           articles?.sort((a, b) => b.likesCount.compareTo(a.likesCount));
         }
         return ListView(
+        
         shrinkWrap: true,
         children: articles
             ?.map((value) => Card(
